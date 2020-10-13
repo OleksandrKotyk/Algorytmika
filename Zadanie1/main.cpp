@@ -1,7 +1,12 @@
 #include "Nieoptymalny.h"
+#include "Optymalny.h"
 
 int main() {
+    cout<<"Nie optymalny"<<endl;
     nie_optymalny();
+    cout<<"Optymalny"<<endl;
+    optymalny();
+
     return 0;
 }
 

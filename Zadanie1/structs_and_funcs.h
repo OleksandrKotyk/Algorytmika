@@ -28,6 +28,7 @@ struct point {
 struct result {
     point *p1 = nullptr;
     point *p2 = nullptr;
+    point *p3 = nullptr;
     double max = -1;
 
     result() = default;
@@ -42,15 +43,25 @@ struct result {
 
 struct line {
     double a, b;
+    int n1, n2;
 
     bool if_in(point &p) const {
         return p.y - p.x * this->a == b;
     }
 
-    line(point &p1, point &p2) {
+    line * line_from_point(point p, int i) const{
+        return new line(this->a, p.y - this->a * p.x, i, i);
+    }
+
+    line(point p1, point p2, int nn1, int nn2) {
         a = (p2.y - p1.y) / (p2.x - p1.x);
         b = p1.y - a * p1.x;
+        this->n1 = nn1;
+        this->n2 = nn2;
     }
+
+    line(double a, double b, int n1, int n2) : a(a), b(b), n1(n1), n2(n2) {}
+
 };
 
 point *readPoint(unsigned long long &N) {
